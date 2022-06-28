@@ -59,7 +59,7 @@ scaled_data = scaler.transform(input)
 predict = model.predict(scaled_data)
 
 if (predict == 0):
-  st.header('The person is not diabetic')
+  st.header('Not diabetic')
 else:
-  st.header('The person is diabetic')
+  st.header('Diabetic')
 
