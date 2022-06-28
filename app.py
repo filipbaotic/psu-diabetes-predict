@@ -32,8 +32,8 @@ y_predict_test = model.predict(X_test_scaler)
 # preciznost
 train_accuracy = accuracy_score(y_predict_train, y_train)
 test_accuracy = accuracy_score(y_predict_test, y_test)
-print('Train accuracy:', round(train_accuracy*100,2),'%')
-print('Test accuracy:', round(test_accuracy*100,2),'%')
+# print('Train accuracy:', round(train_accuracy*100,2),'%')
+# print('Test accuracy:', round(test_accuracy*100,2),'%')
 
 
 # streamlit dio
