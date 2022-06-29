@@ -1,6 +1,5 @@
 import numpy as np
-import pandas as pd 
-import matplotlib.pyplot as plt
+import pandas as pd
 import sklearn.svm
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -34,33 +33,31 @@ train_accuracy = accuracy_score(y_predict_train, y_train)
 test_accuracy = accuracy_score(y_predict_test, y_test)
 # print('Train accuracy:', round(train_accuracy*100,2),'%')
 # print('Test accuracy:', round(test_accuracy*100,2),'%')
-
+# train i test preciznost su oko 75-80%
 
 # streamlit dio
-# Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age
+
 st.title('Diabetes prediction')
 
 col1, col2 = st.columns(2)
 
 with st.form("form"):
   with col1:
-    p1 = st.number_input('Number of pregnancies')
-    p2 = st.number_input('Glucose')
-    p3 = st.number_input('Blood pressure')
-    p4 = st.number_input('Skin thickness')
+    p1 = st.number_input('Number of pregnancies', min_value=0)
+    p2 = st.number_input('Glucose', min_value=0)
+    p3 = st.number_input('Blood pressure', min_value=0)
+    p4 = st.number_input('Skin thickness', min_value=0)
 
   with col2:
-    p5 = st.number_input('Insulin')
-    p6 = st.number_input('BMI')
-    p7 = st.number_input('Diabetes pedigree function')
-    p8 = st.number_input('Age')
+    p5 = st.number_input('Insulin', min_value=0)
+    p6 = st.number_input('BMI', min_value=0.0, step=0.1, format="%0.1f")
+    p7 = st.number_input('Diabetes pedigree function', min_value=0.00, max_value=1.00, step=0.001, format="%0.3f")
+    p8 = st.number_input('Age', min_value=0)
 
   submitted = st.form_submit_button("Submit")
   if submitted:
-      # provjera
       input_data = (p1,p2,p3,p4,p5,p6,p7,p8)
       input = np.asarray(input_data) # input data - numpy array
-
       # oblikovanje 
       input = input.reshape(1,-1)
 
