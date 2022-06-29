@@ -39,27 +39,37 @@ test_accuracy = accuracy_score(y_predict_test, y_test)
 # streamlit dio
 # Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age
 st.title('Diabetes prediction')
-p1 = st.number_input('Number of pregnancies')
-p2 = st.number_input('Glucose')
-p3 = st.number_input('Blood pressure')
-p4 = st.number_input('Skin thickness')
-p5 = st.number_input('Insulin')
-p6 = st.number_input('BMI')
-p7 = st.number_input('Diabetes pedigree function')
-p8 = st.number_input('Age')
 
-# provjera
-input_data = (p1,p2,p3,p4,p5,p6,p7,p8)
-input = np.asarray(input_data) # input data - numpy array
+col1, col2 = st.columns(2)
 
-# oblikovanje 
-input = input.reshape(1,-1)
+with st.form("form"):
+  with col1:
+    p1 = st.number_input('Number of pregnancies')
+    p2 = st.number_input('Glucose')
+    p3 = st.number_input('Blood pressure')
+    p4 = st.number_input('Skin thickness')
 
-scaled_data = scaler.transform(input)
-predict = model.predict(scaled_data)
+  with col2:
+    p5 = st.number_input('Insulin')
+    p6 = st.number_input('BMI')
+    p7 = st.number_input('Diabetes pedigree function')
+    p8 = st.number_input('Age')
 
-if (predict == 0):
-  st.header('Not diabetic')
-else:
-  st.header('Diabetic')
+  submitted = st.form_submit_button("Submit")
+  if submitted:
+      # provjera
+      input_data = (p1,p2,p3,p4,p5,p6,p7,p8)
+      input = np.asarray(input_data) # input data - numpy array
+
+      # oblikovanje 
+      input = input.reshape(1,-1)
+
+      scaled_data = scaler.transform(input)
+      predict = model.predict(scaled_data)
+
+      if (predict == 0):
+        st.success('Not diabetic')
+      else:
+        st.error('Diabetic')
+
 
