@@ -37,6 +37,10 @@ test_accuracy = accuracy_score(y_predict_test, y_test)
 
 # streamlit dio
 
+with st.sidebar:
+  st.write('Train accuracy:', round(train_accuracy*100,2),'%')
+  st.write('Test accuracy:', round(test_accuracy*100,2),'%')
+
 st.title('Diabetes prediction')
 
 col1, col2 = st.columns(2)
@@ -68,5 +72,3 @@ with st.form("form"):
         st.success('Not diabetic')
       else:
         st.error('Diabetic')
-
-
